@@ -2,20 +2,23 @@ import { Button, Card, CardContent, IconButton } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
 import { Delete } from "@mui/icons-material";
+import Draggable from "react-draggable";
 
 function TrashRoom(): JSX.Element {
     const [showThoughtContainer, setShowThoughtContainer] = useState<boolean>(false);
     const [thoughts, setThoughts] = useState<string[]>([]);
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
-            <Card>
-                <CardContent>
-                    { thought }
-                    <IconButton color="error" onClick={() => deleteThought(thought)}>
-                        <Delete />
-                    </IconButton>
-                </CardContent>
-            </Card>
+            <Draggable>
+                <Card>
+                    <CardContent>
+                        { thought }
+                        <IconButton color="error" onClick={() => deleteThought(thought)}>
+                            <Delete />
+                        </IconButton>
+                    </CardContent>
+                </Card>
+            </Draggable>
         );
     });
 
