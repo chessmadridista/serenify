@@ -14,11 +14,19 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
         setNewThought(event.target.value);   
     }
 
+    function processPressedKey(event: React.KeyboardEvent<HTMLInputElement>): void {
+        if (event.key === "Enter") {
+            processNewThought(newThought);
+        } else if (event.key === "Escape") {
+            closeWritingContainer();
+        }
+    }
+
     return (
         <Card>
             <CardContent>
                 <InputLabel htmlFor="new-thought">Your thought</InputLabel>
-                <Input id="new-thought" value={newThought} onChange={updateNewThought} />
+                <Input id="new-thought" value={newThought} onChange={updateNewThought} onKeyDown={processPressedKey} />
                 <IconButton onClick={closeWritingContainer}>
                     <Close />
                 </IconButton>
