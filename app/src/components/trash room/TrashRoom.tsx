@@ -17,11 +17,19 @@ function TrashRoom(): JSX.Element {
         setShowThoughtContainer(true);
     }
 
+    function closeWritingContainer(): void {
+        setShowThoughtContainer(false);
+    }
+
+    function processNewThought(): void {
+        return
+    }
+
     return (
         <>
             { thoughtCards }
             <Button onClick={showField}>Write a new thought</Button>
-            { showThoughtContainer ? <WritingContainer /> : <></> }
+            { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
         </>
     );
 }
