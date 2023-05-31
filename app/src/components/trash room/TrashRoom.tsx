@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, Grid, IconButton } from "@mui/material";
+import { Button, Card, CardContent, IconButton } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
 import { Delete } from "@mui/icons-material";
@@ -50,8 +50,8 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { thoughtCards }
-            { (thoughts.length > 0 && !showThoughtContainer) ? <Button onClick={deleteAllThoughts} color="error">Delete all thoughts</Button> : <></> }
-            <Button variant="contained" onClick={showField}>Write a new thought</Button>
+            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2 }} onClick={deleteAllThoughts} color="error">Delete all thoughts</Button> : <></> }
+            <Button sx={{ margin: 2 }} variant="contained" onClick={showField}>Write a new thought</Button>
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
         </>
     );
