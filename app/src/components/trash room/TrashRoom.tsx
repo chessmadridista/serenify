@@ -1,6 +1,7 @@
-import { Button, Card, CardContent } from "@mui/material";
+import { Button, Card, CardContent, IconButton } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
+import { Delete } from "@mui/icons-material";
 
 function TrashRoom(): JSX.Element {
     const [showThoughtContainer, setShowThoughtContainer] = useState<boolean>(false);
@@ -8,10 +9,22 @@ function TrashRoom(): JSX.Element {
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
             <Card>
-                <CardContent>{ thought }</CardContent>
+                <CardContent>
+                    { thought }
+                    <IconButton color="error" onClick={() => deleteThought(thought)}>
+                        <Delete />
+                    </IconButton>
+                </CardContent>
             </Card>
         );
     });
+
+    function deleteThought(thoughtToBeDeleted: string): void {
+        const updatedArray = thoughts.filter((thought) => {
+            return thought !== thoughtToBeDeleted;
+        });
+        setThoughts(updatedArray);
+    }
 
     function showField(): void {
         setShowThoughtContainer(true);
