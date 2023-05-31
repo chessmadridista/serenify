@@ -10,7 +10,7 @@ function TrashRoom(): JSX.Element {
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
             <Draggable>
-                <Card>
+                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)' }}>
                     <CardContent>
                         { thought }
                         <IconButton color="error" onClick={() => deleteThought(thought)}>

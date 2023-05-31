@@ -30,7 +30,7 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
     }
 
     return (
-        <Card>
+        <Card sx={{ borderRadius: 3 }}>
             <CardContent>
                 <InputLabel htmlFor="new-thought">Your thought</InputLabel>
                 <Input inputRef={newThoughtRef} id="new-thought" value={newThought} onChange={updateNewThought} onKeyDown={processPressedKey} />
