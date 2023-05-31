@@ -40,11 +40,16 @@ function TrashRoom(): JSX.Element {
         closeWritingContainer();
     }
 
+    function deleteAllThoughts(): void {
+        setThoughts([]);
+    }
+
     return (
         <>
             { thoughtCards }
             <Button onClick={showField}>Write a new thought</Button>
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
+            { (thoughts.length > 0 && !showThoughtContainer) ? <Button onClick={deleteAllThoughts} color="error">Delete all thoughts</Button> : <></> }
         </>
     );
 }
