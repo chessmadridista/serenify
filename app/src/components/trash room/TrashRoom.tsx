@@ -1,10 +1,10 @@
-import { Button, Card, CardContent, Input } from "@mui/material";
+import { Button, Card, CardContent } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
 
 function TrashRoom(): JSX.Element {
-    const [showThoughtContainer, setShowThoughtContainer] = useState(false);
-    const thoughts: Array<string> = [];
+    const [showThoughtContainer, setShowThoughtContainer] = useState<boolean>(false);
+    const [thoughts, setThoughts] = useState<string[]>([]);
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
             <Card>
@@ -21,7 +21,9 @@ function TrashRoom(): JSX.Element {
         setShowThoughtContainer(false);
     }
 
-    function processNewThought(): void {
+    function processNewThought(thought: string): void {
+        const updatedThoughts = [...thoughts, thought];
+        setThoughts(updatedThoughts);
         closeWritingContainer();
     }
 
