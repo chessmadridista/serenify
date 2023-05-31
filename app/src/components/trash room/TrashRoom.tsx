@@ -22,7 +22,7 @@ function TrashRoom(): JSX.Element {
     }
 
     function processNewThought(): void {
-        return
+        closeWritingContainer();
     }
 
     return (
