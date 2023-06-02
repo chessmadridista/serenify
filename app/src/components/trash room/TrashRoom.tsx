@@ -11,7 +11,7 @@ function TrashRoom(): JSX.Element {
     const [thoughts, setThoughts] = useState<string[]>([]);
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
-            <Draggable>
+            <Draggable key={thought}>
                 <Card sx={{ borderRadius: 3, boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)' }}>
                     <CardContent>
                         { thought }
@@ -29,7 +29,7 @@ function TrashRoom(): JSX.Element {
             return thought !== thoughtToBeDeleted;
         });
         setThoughts(updatedArray);
-        startConfetti();
+        celebrateUsingConfetti();
     }
 
     function showField(): void {
@@ -48,15 +48,14 @@ function TrashRoom(): JSX.Element {
 
     function deleteAllThoughts(): void {
         setThoughts([]);
-        startConfetti();
+        celebrateUsingConfetti();
     }
 
-    function startConfetti() {
+    function celebrateUsingConfetti() {
         setShowConfetti(true);
-    }
-
-    function onConfettiComplete() {
-        setShowConfetti(false);
+        setTimeout(() => {
+            setShowConfetti(false);
+        }, 1500);
     }
 
     return (
@@ -65,7 +64,7 @@ function TrashRoom(): JSX.Element {
             { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2 }} onClick={deleteAllThoughts} color="error">Delete all thoughts</Button> : <></> }
             <Button sx={{ margin: 2 }} variant="contained" onClick={showField}>Write a new thought</Button>
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
-            {{showConfetti} && <Confetti run={showConfetti} recycle={false} onConfettiComplete={onConfettiComplete} />}
+            { <Confetti recycle={showConfetti} /> }
         </>
     );
 }
