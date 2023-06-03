@@ -7,8 +7,6 @@ Welcome to the Negative Thoughts Dustbin! Say goodbye to negativity and embrace 
 Click on the "Write a new thought" button to unleash your thoughts. Express yourself freely and let go of any negativity weighing you down. The app provides a field where you can pour out your thoughts, one by one, with no judgment.
 
 ![Write new thought gif](./feature-gifs/write-thought.gif)
-![Write new thought gif](write-thought.gif)
-![Write new thought gif](https://imgur.com/gallery/FunL9rp.gif)
 
 ## Deleting Thoughts 🚮
 
