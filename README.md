@@ -18,12 +18,14 @@ On each thought's card, you'll find a little bin icon. Click on it, and watch as
 
 Ready to wipe the slate clean? The "Delete All Thoughts" button is your magic eraser. With a single click, watch all your negative thoughts vanish into thin air. And to celebrate your newfound freedom, get ready for a shower of confetti!
 
+### Drag and Arrange Thoughts 🌈
+
+Not only can you delete thoughts, but you can also rearrange them according to your preference. Simply click and hold on a thought card, then drag it to a new position. Organize your thoughts in a way that brings you peace and clarity.
+
 ## Embrace Positivity 🌟
 
-As you delete your thoughts, remember that you are taking control of your emotions and making space for positivity. Each deleted thought signifies a step towards a happier, stress-free you. Let the confetti shower remind you of the joy and lightness that comes from letting go of negativity.
+As you delete your thoughts and arrange them to your liking, remember that you are taking control of your emotions and making space for positivity. Each deleted or repositioned thought signifies a step towards a happier, stress-free you. Let the confetti shower remind you of the joy and lightness that comes from letting go of negativity.
 
 ### Tags: #self-care #positivity #stress-relief #emotional-wellness
 
 Join us in the journey to a happier and healthier mindset! Try out the Negative Thoughts Dustbin web app [here](https://chessmadridista.github.io/negative-thoughts-dustbin/) and experience the empowering feeling of releasing negative thoughts.
-
-![Negative Thoughts Dustbin App Screenshot](screenshot.png)
