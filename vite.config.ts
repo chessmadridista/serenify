@@ -13,7 +13,7 @@ export default defineConfig(({ command }) => {
   }
 
   if (command !== 'serve') {
-    config.base = '/negative-thoughts-dustbin/'
+    config.base = '/'
   }
 
   return config
