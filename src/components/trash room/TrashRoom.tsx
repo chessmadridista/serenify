@@ -15,7 +15,13 @@ function TrashRoom(): JSX.Element {
                 <Card sx={{ borderRadius: 3, boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)' }}>
                     <CardContent>
                         { thought }
-                        <IconButton color="error" onClick={() => deleteThought(thought)}>
+                        <IconButton color="error" onClick={() => {
+                                deleteThought(thought);
+                            }}
+                            onTouchEnd={() => {
+                                deleteThought(thought);
+                            }}
+                            >
                             <Delete />
                         </IconButton>
                     </CardContent>
