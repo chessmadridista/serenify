@@ -1,5 +1,5 @@
 import { Check, Close } from "@mui/icons-material";
-import { Card, CardContent, IconButton, Input, InputLabel } from "@mui/material";
+import { Card, CardContent, IconButton, Input, TextField, InputLabel } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 interface WritingContainerProps{
@@ -22,7 +22,9 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
     }
 
     function processPressedKey(event: React.KeyboardEvent<HTMLInputElement>): void {
-        if (event.key === "Enter") {
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+        if (event.key === "Enter" && !event.shiftKey && !isTouchDevice) {
             processNewThought(newThought);
         } else if (event.key === "Escape") {
             closeWritingContainer();
@@ -30,10 +32,20 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
     }
 
     return (
-        <Card sx={{ borderRadius: 3 }}>
+        <Card sx={{ borderRadius: 3, minWidth: '80vw' }}>
             <CardContent>
-                <InputLabel htmlFor="new-thought">Your thought</InputLabel>
-                <Input inputRef={newThoughtRef} id="new-thought" value={newThought} onChange={updateNewThought} onKeyDown={processPressedKey} />
+                <TextField
+                    inputRef={newThoughtRef}
+                    id="new-thought"
+                    label="Your thought"
+                    multiline
+                    rows={4}
+                    value={newThought}
+                    onChange={updateNewThought}
+                    onKeyDown={processPressedKey}
+                    variant="outlined"
+                    fullWidth
+                />
                 <IconButton onClick={closeWritingContainer}>
                     <Close />
                 </IconButton>
