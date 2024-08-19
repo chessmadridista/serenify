@@ -1,5 +1,5 @@
 import { Check, Close } from "@mui/icons-material";
-import { Card, CardContent, IconButton, Input, TextField, InputLabel } from "@mui/material";
+import { Card, CardContent, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 
 interface WritingContainerProps{
