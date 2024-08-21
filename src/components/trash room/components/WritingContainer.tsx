@@ -32,7 +32,15 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
     }
 
     return (
-        <Card sx={{ borderRadius: 3, minWidth: '80vw' }}>
+        <Card sx={{ borderRadius: 3, 
+            minWidth: {
+                xs: '80vw',
+                sm: '70vw',
+                md: '60vw',
+                lg: '60vw',
+                xl: '50vw',
+            },
+         }}>
             <CardContent>
                 <TextField
                     inputRef={newThoughtRef}
