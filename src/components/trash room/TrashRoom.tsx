@@ -1,7 +1,6 @@
 import { Button, Card, CardContent, IconButton } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
-import { Delete } from "@mui/icons-material";
 import Draggable from "react-draggable";
 import Confetti from 'react-confetti';
 
