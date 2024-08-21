@@ -22,7 +22,7 @@ function TrashRoom(): JSX.Element {
                                 deleteThought(thought);
                             }}
                             >
-                            <Delete />
+                            🌿
                         </IconButton>
                     </CardContent>
                 </Card>
@@ -67,8 +67,8 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { !showThoughtContainer ? thoughtCards : <></> }
-            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2 }} onClick={deleteAllThoughts} color="error">Delete all thoughts</Button> : <></> }
-            { !showThoughtContainer ? <Button sx={{ margin: 2 }} variant="contained" onClick={showField}>Write a new thought</Button> : <></> }
+            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2 }} onClick={deleteAllThoughts} color="success">Ease my mind</Button> : <></> }
+            { !showThoughtContainer ? <Button sx={{ margin: 2 }} variant="contained" onClick={showField}>I want to share something</Button> : <></> }
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
             { <Confetti recycle={showConfetti} /> }
         </>
