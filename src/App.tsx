@@ -1,10 +1,24 @@
 import './App.css'
 import TrashRoom from './components/trash room/TrashRoom';
+import logo from './assets/logo.png'
+import { Box } from '@mui/material';
 
 function App() {
   return (
     <>
       <TrashRoom />
+      <Box
+        component="img"
+        sx={{
+          maxWidth: { xs: 180, md: 250 },
+          position: 'fixed',
+          bottom: 0,
+          right: 0,
+          zIndex: 1,
+        }}
+        alt="Serenify logo."
+        src={logo}
+      />
     </>
   )
 }
