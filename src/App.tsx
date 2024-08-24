@@ -10,13 +10,11 @@ function App() {
       <Box
         component="img"
         sx={{
-          height: 233,
-          width: 350,
-          maxHeight: { xs: 233, md: 167 },
-          maxWidth: { xs: 350, md: 250 },
+          maxWidth: { xs: 180, md: 250 },
           position: 'fixed',
           bottom: 0,
           right: 0,
+          zIndex: 1,
         }}
         alt="Serenify logo."
         src={logo}

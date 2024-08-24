@@ -11,7 +11,7 @@ function TrashRoom(): JSX.Element {
     const thoughtCards: Array<JSX.Element> = thoughts.map((thought) => {
         return (
             <Draggable key={thought}>
-                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)' }}>
+                <Card sx={{ borderRadius: 3, boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)', position: 'relative', zIndex: 2, }}>
                     <CardContent>
                         { thought }
                         <IconButton color="error" onClick={() => {
@@ -66,8 +66,8 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { !showThoughtContainer ? thoughtCards : <></> }
-            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px' }} onClick={deleteAllThoughts} color="success">Ease my mind</Button> : <></> }
-            { !showThoughtContainer ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px' }} variant="contained" onClick={showField}>I want to share something</Button> : <></> }
+            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} onClick={deleteAllThoughts} color="success">Ease my mind</Button> : <></> }
+            { !showThoughtContainer ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} variant="contained" onClick={showField}>I want to share something</Button> : <></> }
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
             { <Confetti recycle={showConfetti} /> }
         </>
