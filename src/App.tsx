@@ -10,7 +10,7 @@ function App() {
       <Box
         component="img"
         sx={{
-          maxWidth: { xs: 180, md: 250 },
+          maxWidth: { xs: 120, md: 250 },
           position: 'fixed',
           bottom: 0,
           right: 0,
