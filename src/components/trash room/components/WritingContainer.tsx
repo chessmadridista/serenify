@@ -54,10 +54,10 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
                     variant="outlined"
                     fullWidth
                 />
-                <IconButton onClick={closeWritingContainer}>
+                <IconButton onClick={closeWritingContainer} color='error'>
                     <Close />
                 </IconButton>
-                <IconButton onClick={() => processNewThought(newThought)}>
+                <IconButton onClick={() => processNewThought(newThought)} color='success'>
                     <Check />
                 </IconButton>
             </CardContent>
