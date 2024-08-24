@@ -66,8 +66,8 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { !showThoughtContainer ? thoughtCards : <></> }
-            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} onClick={deleteAllThoughts} color="success">Ease my mind</Button> : <></> }
-            { !showThoughtContainer ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} variant="contained" onClick={showField}>I want to share something</Button> : <></> }
+            { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} onClick={deleteAllThoughts} color="success">Ease my mind 🌿</Button> : <></> }
+            { !showThoughtContainer ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} variant="contained" onClick={showField}>I want to share something ✍️</Button> : <></> }
             { showThoughtContainer ? <WritingContainer closeWritingContainer={closeWritingContainer} processNewThought={processNewThought} /> : <></> }
             { <Confetti recycle={showConfetti} /> }
         </>
