@@ -45,7 +45,7 @@ function WritingContainer({ closeWritingContainer, processNewThought }: WritingC
                 <TextField
                     inputRef={newThoughtRef}
                     id="new-thought"
-                    label="Please share whatever is bothering you"
+                    label="Please share whatever is bothering you 😌"
                     multiline
                     rows={4}
                     value={newThought}
