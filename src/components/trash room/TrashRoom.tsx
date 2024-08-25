@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, IconButton, Snackbar, Alert } from "@mui/material";
+import { Button, Card, CardContent, IconButton, Snackbar, Alert, SnackbarCloseReason } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
 import { useState } from "react";
 import Draggable from "react-draggable";
@@ -77,11 +77,14 @@ function TrashRoom(): JSX.Element {
     });
 
     function applySnackbarOperations() {
+        console.log('muahahahah');
         const noOfMessages = encouragementMessages.length
         const messageId = Math.floor(Math.random() * noOfMessages);
         const messageContent = encouragementMessages[messageId].message;
 
-        setShowSnackbar(true);
+        if (showSnackbar === false)
+            console.log('is it coming here');
+            setShowSnackbar(true);
         setSnackbarMessage(messageContent);
     }
 
@@ -114,7 +117,11 @@ function TrashRoom(): JSX.Element {
         celebrateUsingConfetti();
     }
 
-    function handleClose() {
+    function handleClose(event, reason?: SnackbarCloseReason) {
+        if (reason === 'clickaway') {
+            return;
+        }
+
         setShowSnackbar(false)
     }
 
@@ -128,7 +135,14 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { showSnackbar ? 
-                <Snackbar open={showSnackbar} autoHideDuration={6000} onClose={handleClose} anchorOrigin={{vertical: 'top', horizontal: 'right'}} >
+                <div>
+                    hahaha
+                <Snackbar 
+                    open={showSnackbar}  
+                    onClose={handleClose} 
+                    autoHideDuration={6000}
+                    anchorOrigin={{vertical: 'top', horizontal: 'right'}} 
+                >
                     <Alert
                         severity="success"
                         variant="filled"
@@ -138,6 +152,7 @@ function TrashRoom(): JSX.Element {
                         {snackbarMessage}
                     </Alert>
                 </Snackbar> 
+                </div>
             : <></>}
             { !showThoughtContainer ? thoughtCards : <></> }
             { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} onClick={deleteAllThoughts} color="success">Ease my mind 🌿</Button> : <></> }
