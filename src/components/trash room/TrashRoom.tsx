@@ -1,6 +1,6 @@
 import { Button, Card, CardContent, IconButton, Snackbar, Alert, SnackbarCloseReason } from "@mui/material";
 import WritingContainer from "./components/WritingContainer";
-import { useState } from "react";
+import { useState, SyntheticEvent } from "react";
 import Draggable from "react-draggable";
 import Confetti from 'react-confetti';
 
@@ -117,7 +117,7 @@ function TrashRoom(): JSX.Element {
         celebrateUsingConfetti();
     }
 
-    function handleClose(event, reason?: SnackbarCloseReason) {
+    function handleClose(_event: Event | SyntheticEvent<Element, Event>, reason?: SnackbarCloseReason) {
         if (reason === 'clickaway') {
             return;
         }
@@ -135,8 +135,6 @@ function TrashRoom(): JSX.Element {
     return (
         <>
             { showSnackbar ? 
-                <div>
-                    hahaha
                 <Snackbar 
                     open={showSnackbar}  
                     onClose={handleClose} 
@@ -152,7 +150,6 @@ function TrashRoom(): JSX.Element {
                         {snackbarMessage}
                     </Alert>
                 </Snackbar> 
-                </div>
             : <></>}
             { !showThoughtContainer ? thoughtCards : <></> }
             { (thoughts.length > 0 && !showThoughtContainer) ? <Button sx={{ margin: 2, textTransform: 'none', borderRadius: '10px', position: 'relative', zIndex: 2, }} onClick={deleteAllThoughts} color="success">Ease my mind 🌿</Button> : <></> }
