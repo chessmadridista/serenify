@@ -138,7 +138,7 @@ function TrashRoom(): JSX.Element {
                 <Snackbar 
                     open={showSnackbar}  
                     onClose={handleClose} 
-                    autoHideDuration={6000}
+                    autoHideDuration={8000}
                     anchorOrigin={{vertical: 'top', horizontal: 'right'}} 
                 >
                     <Alert
