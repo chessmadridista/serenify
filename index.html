@@ -1,22 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T3TWNZRS1D"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thought Dump & Purge</title>
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --text-color: #e0e0e0;
+            --accent-color: #bb86fc;
+            --danger-color: #cf6679;
+            --surface-color: #1e1e24;
+        }
 
-      gtag('config', 'G-T3TWNZRS1D');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: #a0a0a0;
+            margin-top: 0.5rem;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: var(--surface-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.1rem;
+            resize: none;
+            outline: none;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        textarea::placeholder {
+            color: #555;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.1s, opacity 0.2s, background-color 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        #add-btn {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        #add-btn:hover {
+            background-color: #cda4fd;
+        }
+
+        #purge-btn {
+            background-color: transparent;
+            color: var(--danger-color);
+            border: 1px solid var(--danger-color);
+        }
+
+        #purge-btn:hover {
+            background-color: rgba(207, 102, 121, 0.15);
+        }
+
+        /* Bubble Canvas Area */
+        .bubble-container {
+            position: relative;
+            flex-grow: 1;
+            width: 100%;
+            overflow: hidden;
+            pointer-events: none; /* Let clicks pass through empty space */
+        }
+
+        .bubble {
+            position: absolute;
+            pointer-events: auto; /* Make bubbles interactable if needed later */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1.5rem;
+            min-width: 80px;
+            min-height: 80px;
+            max-width: 180px;
+            aspect-ratio: 1;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            
+            /* Glassmorphism / Soap Bubble Effect */
+            background: radial-gradient(150% 150% at 30% 20%, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05) 40%, rgba(0, 0, 0, 0.3) 100%);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.05),
+                inset 10px 0 40px rgba(187, 134, 252, 0.1),
+                inset -10px 0 40px rgba(207, 102, 121, 0.1),
+                0 8px 32px rgba(0, 0, 0, 0.3);
+            
+            /* Entry and Idle animations combined */
+            animation: 
+                appear 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards,
+                floatIdle 4s ease-in-out infinite alternate;
+        }
+
+        /* The popping animation when purged */
+        .bubble.popping {
+            animation: popBurst 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards !important;
+        }
+
+        @keyframes appear {
+            0% { opacity: 0; transform: scale(0.3) translateY(40px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        @keyframes floatIdle {
+            0% { transform: translateY(0) translateX(0); }
+            100% { transform: translateY(-15px) translateX(5px); }
+        }
+
+        @keyframes popBurst {
+            0% { transform: scale(1); opacity: 1; filter: brightness(1); }
+            40% { transform: scale(1.3); opacity: 0.9; filter: brightness(1.5); }
+            100% { transform: scale(0); opacity: 0; filter: brightness(2); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Mind Dump</h1>
+            <p>Gain control. Get it out of your head, then let it go.</p>
+        </header>
+        
+        <div class="input-section">
+            <textarea id="thought-input" placeholder="What's taking up space in your mind? (Press Enter to dump)"></textarea>
+            <div class="actions">
+                <button id="add-btn">Dump Thought</button>
+                <button id="purge-btn">Purge All</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="bubble-container" class="bubble-container"></div>
+
+    <script>
+        const input = document.getElementById('thought-input');
+        const addBtn = document.getElementById('add-btn');
+        const purgeBtn = document.getElementById('purge-btn');
+        const container = document.getElementById('bubble-container');
+
+        function addThought() {
+            const text = input.value.trim();
+            if (!text) return;
+
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.textContent = text;
+            
+            // Randomize position within the lower container
+            // Using percentages to keep them responsive, keeping them away from the extreme edges
+            const randomX = Math.floor(Math.random() * 75) + 5; // 5% to 80% width
+            const randomY = Math.floor(Math.random() * 70) + 5; // 5% to 75% height
+            
+            bubble.style.left = `${randomX}%`;
+            bubble.style.top = `${randomY}%`;
+            
+            // Randomize the animation delay so they don't all float in perfect sync
+            const randomDelay = (Math.random() * 2).toFixed(2);
+            bubble.style.animationDelay = `0s, ${randomDelay}s`; // 0s for 'appear', random for 'floatIdle'
+            
+            // Add slight random sizing based on text length (just to make it organic)
+            const textLength = text.length;
+            if (textLength > 50) {
+                bubble.style.width = '160px';
+                bubble.style.height = '160px';
+                bubble.style.fontSize = '0.85rem';
+            } else if (textLength < 15) {
+                bubble.style.width = '100px';
+                bubble.style.height = '100px';
+                bubble.style.fontSize = '1.1rem';
+            }
+
+            container.appendChild(bubble);
+            
+            input.value = '';
+            input.focus();
+        }
+
+        addBtn.addEventListener('click', addThought);
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                addThought();
+            }
+        });
+
+        purgeBtn.addEventListener('click', () => {
+            const bubbles = document.querySelectorAll('.bubble');
+            if (bubbles.length === 0) return;
+
+            purgeBtn.disabled = true;
+            addBtn.disabled = true;
+            input.disabled = true;
+
+            bubbles.forEach((bubble, index) => {
+                // Stagger the pop effect
+                setTimeout(() => {
+                    bubble.classList.add('popping');
+                    
+                    // Remove after the pop animation finishes (350ms)
+                    setTimeout(() => {
+                        bubble.remove();
+                        
+                        if (index === bubbles.length - 1) {
+                            purgeBtn.disabled = false;
+                            addBtn.disabled = false;
+                            input.disabled = false;
+                            input.focus();
+                        }
+                    }, 350); 
+                }, index * 80); // 80ms delay between each pop
+            });
+        });
     </script>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Serenify</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</body>
 </html>
